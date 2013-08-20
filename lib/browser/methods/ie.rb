@@ -32,6 +32,11 @@ class Browser
       ie? && version == "10"
     end
 
+    # Detect if browser has Chrome Frame installed
+    def chrome_frame?
+      ie? && !!(ua =~ /chromeframe/)
+    end
+
     # Detect if IE is running in compatibility mode.
     def compatibility_view?
       ie? && ua.match(TRIDENT_VERSION_REGEX) && version.to_i < ($1.to_i + 4)
